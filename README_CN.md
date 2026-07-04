@@ -1,6 +1,8 @@
+<p align="right"><a href="./README.md#english">English</a> | <strong>中文</strong> | <a href="./README.md#zh-cn">返回仓库首页中文区</a></p>
+
 # CityGo - 智能城市旅行助手
 
-[English README](./README.md)
+> 说明：GitHub 仓库首页只会自动渲染根目录的 `README.md`。如果希望在仓库首页内切换语言，请使用 [README.md 的中文区](./README.md#zh-cn)。本文件作为中文独立版保留。
 
 CityGo 是一款面向城市旅行和 CityWalk 场景的 Android 应用。它把行程创建、地图导航、AI 行程生成、用户偏好和旅行预算记录整合到一个移动端流程里。
 
