@@ -1,76 +1,149 @@
-# 🌍 CityGo - Smart Travel Companion
+# CityGo - Smart Travel Companion
 
-[![Language](https://img.shields.io/badge/Language-Java-orange.svg)]()
-[![Platform](https://img.shields.io/badge/Platform-Android-green.svg)]()
-[![SDK](https://img.shields.io/badge/Map-Google%20Maps%20SDK-blue.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)]()
+[Chinese README](./README_CN.md)
 
-> **Mobile Computing (COMP3011J) - Group 04 Project Submission**
+CityGo is an Android travel planning app for building city-walk itineraries. It combines a trip planner, Google Maps based navigation, AI-assisted itinerary generation, user travel preferences, and local budget tracking in one mobile workflow.
 
-👋 **[点击这里查看中文说明 (Click here for Chinese Version)](./README_CN.md)**
+> Mobile Computing (COMP3011J) - Group 04 Project
 
----
+## Screenshots
 
-## 📖 Introduction
+Screenshots below were captured from a local Android emulator run.
 
-**CityGo** is a comprehensive Android application designed to enhance the travel experience. By leveraging the power of the **Google Maps SDK**, CityGo provides users with intelligent route planning, real-time navigation, and seamless city exploration features. Whether you are navigating the streets of **Harbin** or planning a cross-city journey, CityGo is your reliable pocket guide.
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/trip-list.png" width="220" alt="Trip list"><br>Trip list</td>
+    <td align="center"><img src="docs/screenshots/create-trip.png" width="220" alt="Create trip"><br>Create trip</td>
+    <td align="center"><img src="docs/screenshots/map-view.png" width="220" alt="Map and budget"><br>Map and budget</td>
+    <td align="center"><img src="docs/screenshots/profile.png" width="220" alt="Profile preferences"><br>Profile preferences</td>
+  </tr>
+</table>
 
-## 📥 APK Download (Required)
+## Features
 
-**⚠️ Important:** Due to GitHub's file size policies, the APK is hosted externally. Please download it via the link below:
+- Create CityWalk plans with destination city, hotel, attraction list, start date, and trip duration.
+- Generate itineraries with an AI trip assistant.
+- Display map-based routes and switch between walking, driving, and transit modes.
+- Track daily trip budget and add expenses during a trip.
+- Store user profile details, dietary preferences, home city, currency, and daily budget.
+- Persist trips, users, and expenses locally with Room.
 
-👉 **[Download CityGo.apk (Google Drive)](https://drive.google.com/file/d/17oRw_qTTKMSMIE5jjJ8eAfsoAA1IJME_/view?usp=drive_link)** 👈
+## Tech Stack
 
-## ✨ Key Features
+- Language: Java
+- Platform: Android
+- Build system: Gradle / Android Gradle Plugin 8.13.1
+- SDK: compileSdk 36, minSdk 24, targetSdk 36
+- UI: AndroidX, Material Components, ViewBinding
+- Maps and places: Google Maps SDK for Android, Google Places API, Google Maps Android Utils
+- Storage: Room
+- Animation: Lottie
 
-*   **📍 Precision Positioning**: Utilizes Google Location Services to provide high-accuracy real-time location.
-*   **🗺️ Interactive Map Interface**: A smooth, responsive map UI supporting gestures, zooming, and Markers via Google Maps.
-*   **🚗 Intelligent Route Planning**: Generates optimal routes for walking, driving, or public transit using the Directions API.
-*   **🏙️ Multi-City Support**: Seamlessly switch contexts between cities to view local attractions.
-*   **📱 User-Centric Design**: Built with Material Design principles for maximum usability.
+## APK Download
 
+A prebuilt APK is hosted externally:
 
-## 🛠️ Tech Stack
+[Download CityGo.apk from Google Drive](https://drive.google.com/file/d/17oRw_qTTKMSMIE5jjJ8eAfsoAA1IJME_/view?usp=drive_link)
 
-*   **Language**: Java
-*   **IDE**: Android Studio Ladybug / Koala
-*   **SDK Level**: Min SDK 24 (Android 7.0) -> Target SDK 34 (Android 14)
-*   **Core Libraries**:
-    *   **Google Maps SDK for Android**: Map display and interaction.
-    *   **Google Places API**: For searching points of interest.
-    *   **AndroidX**: UI components and compatibility.
+## Local Setup
 
-## 🚀 Getting Started (For Developers)
+### Prerequisites
 
-1.  **Clone the Repository**
-    ```bash
-    git clone https://github.com/JojoZhu9/COMP3011J-CityGo.git
-    ```
+- Android Studio Ladybug/Koala or newer
+- Android SDK Platform 36 installed
+- JDK 11 or newer
+- Android emulator or physical Android device with Google Play Services
+- Google Maps Platform keys with the required APIs enabled:
+  - Maps SDK for Android
+  - Places API
+  - Directions API
+- DeepSeek API key if you want to use the AI itinerary assistant
 
-2.  **Open in Android Studio**
-    *   File > Open > Select project directory.
-    *   Wait for Gradle sync.
+### Clone and Build
 
-3.  **API Key Configuration**
-    *   **Important**: This project requires a valid Google Maps API Key.
-    *   Ensure your API Key is correctly configured in `AndroidManifest.xml` (or `local.properties` if hidden).
-    *   The key must have **Maps SDK for Android** enabled in the Google Cloud Console.
+```bash
+git clone https://github.com/JojoZhu9/COMP3011J-CityGo.git
+cd COMP3011J-CityGo
+```
 
-4.  **Run**
-    *   Connect a device or Emulator (with Google Play Services installed) and click **Run**.
+On Windows:
 
-## 📝 Notes for Graders
+```powershell
+.\gradlew.bat assembleDebug
+```
 
-*   **Permissions**: The app requires **Location** and **Internet** permissions. Please grant them on first launch.
-*   **Google Play Services**: Please ensure the test device/emulator has Google Play Services installed to load the map correctly.
+On macOS/Linux:
 
-## 👥 Contributors (Group 04)
+```bash
+./gradlew assembleDebug
+```
+
+The debug APK is generated at:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+### Android SDK Path
+
+If Gradle cannot find the Android SDK, create a local-only `local.properties` file in the project root. This file is ignored by Git.
+
+```properties
+sdk.dir=C\:\\Users\\<your-user>\\AppData\\Local\\Android\\Sdk
+```
+
+### Install and Launch from the Command Line
+
+```bash
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb shell am start -n com.example.citygo/.LoginActivity
+```
+
+You can also open the project in Android Studio and use the normal Run button.
+
+## API Key Notes
+
+This app depends on Google Maps/Places/Directions services and an AI itinerary service. Use your own restricted keys before running or publishing a build.
+
+- The map key is referenced from `app/src/main/res/values/google_maps_api.xml`.
+- Places, route planning, and AI itinerary code also require valid service keys.
+- Do not commit production secrets. Prefer ignored local configuration, Gradle properties, or CI secrets for real deployments.
+
+## Verified Locally
+
+- `.\gradlew.bat assembleDebug` completed successfully on Windows.
+- The debug APK was installed and launched on the `Pixel_8_Pro_2` Android emulator.
+- README screenshots were captured from that local run.
+
+## Troubleshooting
+
+- `SDK location not found`: add `local.properties` with your local Android SDK path.
+- Blank map or `Locate Failed`: check emulator/device location permission, Google Play Services, internet access, and Google Maps API key restrictions.
+- Gradle sync fails: confirm Android SDK Platform 36 is installed and Android Studio is using JDK 11+.
+- AI itinerary generation fails: confirm the AI API key is valid and the device/emulator can reach the API endpoint.
+
+## Project Structure
+
+```text
+app/src/main/java/com/example/citygo/
+|-- LoginActivity.java
+|-- PreferenceSelectionActivity.java
+|-- MainActivity.java
+|-- CreateTripActivity.java
+|-- MapActivity.java
+|-- ProfileActivity.java
+|-- TripBudgetController.java
+|-- RouteManager.java
+|-- GoogleMapsService.java
+`-- database/
+```
+
+## Contributors
 
 | Name | Role | GitHub |
 |:---:|:---:|:---:|
-| **Jiuzhou Zhu** | Member | [@JojoZhu9](https://github.com/JojoZhu9) |
-| **Ciara Behan** | Member | - |
-| **Eva Barrett** | Member | - |
+| Jiuzhou Zhu | Member | [@JojoZhu9](https://github.com/JojoZhu9) |
+| Ciara Behan | Member | - |
+| Eva Barrett | Member | - |
 
----
-*© 2025 CityGo Project. All Rights Reserved.*
+Copyright 2025 CityGo Project. All rights reserved.
