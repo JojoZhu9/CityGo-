@@ -29,12 +29,6 @@
 *   **🏙️ Multi-City Support**: Seamlessly switch contexts between cities to view local attractions.
 *   **📱 User-Centric Design**: Built with Material Design principles for maximum usability.
 
-## 📸 Screenshots
-
-| Home | Map View | Route Planning | Profile |
-|:---:|:---:|:---:|:---:|
-| <img src="screenshots/home.png" alt="Home" width="200"/> | <img src="screenshots/map.png" alt="Map" width="200"/> | <img src="screenshots/route.png" alt="Route" width="200"/> | <img src="screenshots/profile.png" alt="Profile" width="200"/> |
-
 
 ## 🛠️ Tech Stack
 
