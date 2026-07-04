@@ -24,13 +24,6 @@
 *   **🏙️ 多城市支持**：支持在不同城市之间无缝切换，查看当地景点。
 *   **📱 人性化设计**：基于 Material Design 原则构建，界面直观简洁。
 
-## 📸 项目截图 (Screenshots)
-
-| 首页预览 | 地图模式 | 路线规划 | 个人中心 |
-|:---:|:---:|:---:|:---:|
-| <img src="screenshots/home.png" alt="Home" width="200"/> | <img src="screenshots/map.png" alt="Map" width="200"/> | <img src="screenshots/route.png" alt="Route" width="200"/> | <img src="screenshots/profile.png" alt="Profile" width="200"/> |
-
-
 ## 🛠️ 技术栈与架构
 
 *   **开发语言**: Java
