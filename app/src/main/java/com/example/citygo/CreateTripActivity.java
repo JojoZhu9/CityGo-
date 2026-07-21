@@ -48,10 +48,7 @@ public class CreateTripActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateTripDebug";
 
-    // ==========================================
-    // 1. Paste your DeepSeek API Key here
-    // ==========================================
-    private static final String DEEPSEEK_API_KEY = "sk-d51b987e1be546148868cc1fc988d52e";
+    private static final String DEEPSEEK_API_KEY = BuildConfig.DEEPSEEK_API_KEY;
     private static final String API_URL = "https://api.deepseek.com/chat/completions";
 
     private ActivityCreateTripBinding binding;
@@ -66,7 +63,7 @@ public class CreateTripActivity extends AppCompatActivity {
         binding = ActivityCreateTripBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Places.initialize(getApplicationContext(), "AIzaSyAR3DCQQ26plX8A7OUwAVp5lWWr_4hw1yE");
+        Places.initialize(getApplicationContext(), BuildConfig.GOOGLE_MAPS_API_KEY);
         PlacesClient placesClient = Places.createClient(this);
 
         dbService = new DBService(this);
@@ -91,7 +88,7 @@ public class CreateTripActivity extends AppCompatActivity {
             try {
                 String urlStr = "https://maps.googleapis.com/maps/api/geocode/json?address="
                         + Uri.encode(cityName)
-                        + "&key=AIzaSyAR3DCQQ26plX8A7OUwAVp5lWWr_4hw1yE";
+                        + "&key=" + BuildConfig.GOOGLE_MAPS_API_KEY;
 
                 URL url = new URL(urlStr);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();

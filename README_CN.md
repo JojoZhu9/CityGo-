@@ -1,72 +1,30 @@
-<p align="right"><a href="./README.md#english">English</a> | <strong>中文</strong> | <a href="./README.md#zh-cn">返回仓库首页中文区</a></p>
+<p align="right"><a href="./README.md">English</a> | <strong>中文</strong></p>
 
 # CityGo - 智能城市旅行助手
 
-> 说明：GitHub 仓库首页只会自动渲染根目录的 `README.md`。如果希望在仓库首页内切换语言，请使用 [README.md 的中文区](./README.md#zh-cn)。本文件作为中文独立版保留。
+CityGo 是一个 Android 城市步行旅行规划应用，整合行程创建、Google Maps 导航、AI 行程建议、用户偏好和本地预算记录。
 
-CityGo 是一款面向城市旅行和 CityWalk 场景的 Android 应用。它把行程创建、地图导航、AI 行程生成、用户偏好和旅行预算记录整合到一个移动端流程里。
-
-> Mobile Computing (COMP3011J) - 第 04 组项目
-
-## 应用截图
-
-以下截图来自本地 Android 模拟器实际运行结果。
-
-<table>
-  <tr>
-    <td align="center"><img src="docs/screenshots/trip-list.png" width="220" alt="行程列表"><br>行程列表</td>
-    <td align="center"><img src="docs/screenshots/create-trip.png" width="220" alt="创建行程"><br>创建行程</td>
-    <td align="center"><img src="docs/screenshots/map-view.png" width="220" alt="地图与预算"><br>地图与预算</td>
-    <td align="center"><img src="docs/screenshots/profile.png" width="220" alt="个人资料与偏好"><br>个人资料与偏好</td>
-  </tr>
-</table>
-
-## 功能亮点
-
-- 创建 CityWalk 行程，支持目的地城市、酒店、景点列表、出发日期和旅行天数。
-- 通过 AI Trip Assistant 辅助生成旅行路线。
-- 基于 Google Maps 展示路线，并支持步行、驾车、公共交通模式切换。
-- 支持每日预算和旅行开销记录。
-- 支持个人资料、饮食偏好、常住城市、货币和每日预算设置。
-- 使用 Room 在本地保存用户、行程和开销数据。
+> **项目状态：** 本项目是 Mobile Computing (COMP3011J) 第 04 组课程项目，用于评估和学习。请使用自己的受限 API 密钥；外部 APK 仅为演示便利文件，不保证可复现发布。
 
 ## 技术栈
 
-- 开发语言：Java
-- 平台：Android
-- 构建工具：Gradle / Android Gradle Plugin 8.13.1
-- SDK：compileSdk 36，minSdk 24，targetSdk 36
-- UI：AndroidX、Material Components、ViewBinding
-- 地图与地点：Google Maps SDK for Android、Google Places API、Google Maps Android Utils
-- 本地存储：Room
-- 动画：Lottie
+- Android（minSdk 24，compileSdk/targetSdk 36）和 Java 11
+- Gradle / Android Gradle Plugin 8.13.1
+- Google Maps、Google Places、Google Maps Android Utils
+- Room、AndroidX、Material Components、ViewBinding 和 Lottie
 
-## APK 下载
+## 本地配置与构建
 
-预构建 APK 托管在外部链接：
+需要 Android SDK Platform 36、JDK 11+，以及带 Google Play Services 的模拟器或真机。
 
-[通过 Google Drive 下载 CityGo.apk](https://drive.google.com/file/d/17oRw_qTTKMSMIE5jjJ8eAfsoAA1IJME_/view?usp=drive_link)
+绝不提交 API 密钥。请通过环境变量或项目根目录中已被 Git 忽略的 `local.properties` 提供受限凭据：
 
-## 本地运行
-
-### 环境要求
-
-- Android Studio Ladybug/Koala 或更新版本
-- 已安装 Android SDK Platform 36
-- JDK 11 或更新版本
-- 带 Google Play Services 的 Android 模拟器或真机
-- Google Maps Platform API Key，并启用：
-  - Maps SDK for Android
-  - Places API
-  - Directions API
-- 如果需要使用 AI 行程助手，需要准备 DeepSeek API Key
-
-### 克隆与构建
-
-```bash
-git clone https://github.com/JojoZhu9/COMP3011J-CityGo.git
-cd COMP3011J-CityGo
+```properties
+GOOGLE_MAPS_API_KEY=replace-with-a-restricted-key
+DEEPSEEK_API_KEY=replace-with-your-ai-service-key
 ```
+
+Google Maps 凭据应仅启用所需 API，并限制到应用的 Android application ID 和签名证书。若密钥可能泄露，请立即轮换。私密报告方式见 [SECURITY.md](SECURITY.md)。
 
 Windows：
 
@@ -80,65 +38,17 @@ macOS/Linux：
 ./gradlew assembleDebug
 ```
 
-Debug APK 输出位置：
+在 Android Studio 中打开项目后，可使用 Run 安装调试版本。
 
-```text
-app/build/outputs/apk/debug/app-debug.apk
-```
+## 演示 APK
 
-### Android SDK 路径
+[从 Google Drive 下载 CityGo.apk](https://drive.google.com/file/d/17oRw_qTTKMSMIE5jjJ8eAfsoAA1IJME_/view?usp=drive_link)
 
-如果 Gradle 找不到 Android SDK，请在项目根目录创建只用于本机的 `local.properties` 文件。该文件已经被 Git 忽略。
+该 APK 仅用于演示便利，不代表可复现或长期支持的发布版本。
 
-```properties
-sdk.dir=C\:\\Users\\<your-user>\\AppData\\Local\\Android\\Sdk
-```
+## 贡献与安全
 
-### 命令行安装并启动
-
-```bash
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-adb shell am start -n com.example.citygo/.LoginActivity
-```
-
-也可以直接用 Android Studio 打开项目并点击 Run。
-
-## API Key 说明
-
-应用依赖 Google Maps、Places、Directions 以及 AI 行程服务。运行或发布前请替换为自己的受限 API Key。
-
-- 地图 Key 通过 `app/src/main/res/values/google_maps_api.xml` 引用。
-- Places、路线规划和 AI 行程生成也需要有效的服务 Key。
-- 不建议提交生产密钥。正式项目建议使用被 Git 忽略的本地配置、Gradle properties 或 CI secrets。
-
-## 本地验证
-
-- 已在 Windows 下执行 `.\gradlew.bat assembleDebug`，构建成功。
-- 已将 debug APK 安装并启动到 `Pixel_8_Pro_2` Android 模拟器。
-- README 中的截图来自该次本地运行。
-
-## 常见问题
-
-- `SDK location not found`：在项目根目录添加 `local.properties` 并写入本机 Android SDK 路径。
-- 地图空白或出现 `Locate Failed`：检查定位权限、Google Play Services、网络连接和 Google Maps API Key 限制。
-- Gradle 同步失败：确认已安装 Android SDK Platform 36，并使用 JDK 11+。
-- AI 行程生成失败：检查 AI API Key 是否有效，模拟器或真机是否可以访问接口。
-
-## 项目结构
-
-```text
-app/src/main/java/com/example/citygo/
-|-- LoginActivity.java
-|-- PreferenceSelectionActivity.java
-|-- MainActivity.java
-|-- CreateTripActivity.java
-|-- MapActivity.java
-|-- ProfileActivity.java
-|-- TripBudgetController.java
-|-- RouteManager.java
-|-- GoogleMapsService.java
-`-- database/
-```
+提交贡献前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。安全问题请按 [SECURITY.md](SECURITY.md) 私密报告。问题与功能建议请使用仓库模板。
 
 ## 开发团队
 

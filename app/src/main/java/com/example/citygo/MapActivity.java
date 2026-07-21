@@ -60,7 +60,7 @@ public class MapActivity extends AppCompatActivity implements
         AttractionAdapter.StartDragListener {
 
     private static final String TAG = "MapActivity";
-    private static final String GOOGLE_MAPS_API_KEY = "AIzaSyAR3DCQQ26plX8A7OUwAVp5lWWr_4hw1yE";
+    private static final String GOOGLE_MAPS_API_KEY = BuildConfig.GOOGLE_MAPS_API_KEY;
     private GoogleMapsService mapsService;
     private ActivityMapBinding binding;
     private MapView mapView;
@@ -183,7 +183,7 @@ public class MapActivity extends AppCompatActivity implements
     public void onMapReady(@NonNull GoogleMap map) {
         this.googleMap = map;
 
-        routeManager = new RouteManager(googleMap, getString(R.string.google_maps_key));
+        routeManager = new RouteManager(googleMap, GOOGLE_MAPS_API_KEY);
 
 
         if (hotelName != null) {
@@ -516,7 +516,7 @@ public class MapActivity extends AppCompatActivity implements
                 URL url = new URL("https://api.deepseek.com/chat/completions");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
-                conn.setRequestProperty("Authorization", "Bearer sk-d51b987e1be546148868cc1fc988d52e");
+                conn.setRequestProperty("Authorization", "Bearer " + BuildConfig.DEEPSEEK_API_KEY);
                 conn.setRequestProperty("Content-Type", "application/json");
                 conn.setDoOutput(true);
                 OutputStream os = conn.getOutputStream();
@@ -724,7 +724,7 @@ public class MapActivity extends AppCompatActivity implements
                 // Use your Google API key
                 String urlStr = "https://maps.googleapis.com/maps/api/geocode/json?address="
                         + Uri.encode(hotelName + " " + city)
-                        + "&key=AIzaSyAR3DCQQ26plX8A7OUwAVp5lWWr_4hw1yE";
+                        + "&key=" + BuildConfig.GOOGLE_MAPS_API_KEY;
 
                 URL url = new URL(urlStr);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
