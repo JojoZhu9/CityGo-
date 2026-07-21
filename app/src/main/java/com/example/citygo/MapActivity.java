@@ -756,7 +756,7 @@ public class MapActivity extends AppCompatActivity implements
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(TAG, "Hotel location request failed");
             }
         });
     }

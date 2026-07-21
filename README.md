@@ -44,7 +44,7 @@ Screenshots below were captured from a local Android emulator run.
 - Google Maps SDK for Android, Google Places API, and Google Maps Android Utils
 - Room and Lottie
 
-## Reproducible Builds
+## Build from Source
 
 The previously linked external prebuilt APK is retired because an older artifact may contain previously embedded credentials. Build the app locally from source with user-owned keys instead.
 
@@ -68,9 +68,9 @@ GOOGLE_MAPS_API_KEY=replace-with-a-restricted-key
 DEEPSEEK_API_KEY=replace-with-your-ai-service-key
 ```
 
-Credentials compiled into an Android APK are recoverable. An Android application restriction can protect a Maps SDK for Android key, but it does not protect a key used by generic Directions API or Geocoding API REST calls. The DeepSeek key is likewise recoverable when the app calls DeepSeek directly.
+Credentials compiled into an Android APK are recoverable. An Android application restriction can protect a Maps SDK for Android key, but it does not protect a key used by direct Directions API, Geocoding API, Places Text Search, or Nearby Search REST calls. The DeepSeek key is likewise recoverable when the app calls DeepSeek directly.
 
-This architecture is local-demo only. A production deployment requires a trusted backend proxy for Directions, Geocoding, and DeepSeek requests. Use a separate Maps SDK for Android key restricted by application ID and signing certificate, and separately restrict backend credentials by API and server identity or IP where applicable.
+This architecture is local-demo only. A production deployment requires a trusted backend proxy for Directions, Geocoding, Places Text Search, Nearby Search, and DeepSeek requests. Use a separate Maps SDK for Android key restricted by application ID and signing certificate, and separately restrict backend credentials by API and server identity or IP where applicable.
 
 Repository owners still need to revoke or rotate any previously embedded credentials and decide how to remove credentials from Git history. This change does not revoke credentials or rewrite history. See [SECURITY.md](SECURITY.md) for private reporting guidance.
 
@@ -127,7 +127,7 @@ CityGo 是 COMP3011J 第 04 组的 Android 城市步行旅行规划课程项目�
 
 - 本项目用于课程评估和学习，当前直连第三方服务的架构仅限本地演示，不是生产服务。
 - 本地运行需要 Maps SDK for Android、Places API、Directions API 和 Geocoding API，并请使用自己的 Google Maps 与 DeepSeek 密钥，绝不提交密钥。
-- APK 中的 Google Web Service 和 DeepSeek 密钥均可被恢复；Android 应用限制不能保护通用 REST 调用。生产环境必须使用可信后端代理，并按用途分别限制凭据。
+- APK 中用于 Directions、Geocoding、Places Text Search、Nearby Search REST 调用及 DeepSeek 的密钥均可被恢复；Android 应用限制不能保护这些 REST 调用。生产环境必须使用可信后端代理，并按用途分别限制凭据。
 - 旧的外部预构建 APK 可能包含之前嵌入的凭据，下载建议已停用；请使用自有密钥从源码构建。
 - 详细中文说明见 [README_CN.md](README_CN.md)。
 

@@ -111,10 +111,10 @@ public class CreateTripActivity extends AppCompatActivity {
                             new com.google.android.gms.maps.model.LatLng(southwest.getDouble("lat"), southwest.getDouble("lng")),
                             new com.google.android.gms.maps.model.LatLng(northeast.getDouble("lat"), northeast.getDouble("lng"))
                     );
-                    Log.d(TAG, "City bounds updated for: " + cityName);
+                    Log.d(TAG, "City bounds updated");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(TAG, "City bounds request failed");
             }
         });
     }
@@ -159,9 +159,8 @@ public class CreateTripActivity extends AppCompatActivity {
                         }
                     });
 
-                }).addOnFailureListener(exception -> {
-                    Log.e(TAG, "Autocomplete failed: " + exception.getMessage());
-                });
+                }).addOnFailureListener(exception ->
+                        Log.e(TAG, "Autocomplete request failed"));
             }
         });
     }
@@ -247,7 +246,7 @@ public class CreateTripActivity extends AppCompatActivity {
                 // Force JSON mode
                 jsonBody.put("response_format", new JSONObject().put("type", "json_object"));
 
-                Log.d(TAG, "Request Body: " + jsonBody.toString());
+                Log.d(TAG, "AI itinerary request started");
 
                 // 3. Send HTTP POST Request
                 URL url = new URL(API_URL);
@@ -273,7 +272,7 @@ public class CreateTripActivity extends AppCompatActivity {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    Log.d(TAG, "API Response: " + response.toString());
+                    Log.d(TAG, "AI itinerary response received");
 
                     // 5. Parse Response
                     JSONObject responseJson = new JSONObject(response.toString());
@@ -283,7 +282,7 @@ public class CreateTripActivity extends AppCompatActivity {
                             .getString("content");
 
                     content = cleanJsonString(content);
-                    Log.d(TAG, "Cleaned Content: " + content);
+                    Log.d(TAG, "AI itinerary response parsed");
 
                     JSONObject tripPlan = new JSONObject(content);
                     String aiCity = tripPlan.optString("city");
@@ -307,13 +306,12 @@ public class CreateTripActivity extends AppCompatActivity {
                     });
 
                 } else {
-                    Log.e(TAG, "Error Response Code: " + responseCode);
+                    Log.e(TAG, "AI itinerary request failed");
                     runOnUiToast("AI Request Failed. Check network or Key.");
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
-                Log.e(TAG, "Exception: " + e.getMessage());
+                Log.e(TAG, "AI itinerary request failed");
                 runOnUiToast("AI Error: " + e.getMessage());
             }
         });

@@ -186,7 +186,7 @@ public class GoogleMapsService {
                 JSONObject json = new JSONObject(sb.toString());
                 callback.onResult(json);
             } catch (Exception e) {
-                Log.e(TAG, "HTTP error for " + urlStr, e);
+                Log.e(TAG, "Google Maps HTTP request failed");
                 try {
                     callback.onResult(new JSONObject()); // fail-safe empty object
                 } catch (Exception ignored) {}
