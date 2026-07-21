@@ -6,7 +6,7 @@ Security reports are welcome for the repository and its Android application. Thi
 
 ## Report Privately
 
-Do not open a public issue for a suspected vulnerability or exposed credential. Use the repository's private security-advisory reporting channel when available. If that channel is unavailable, contact a listed project maintainer privately through their GitHub profile and include only the minimum information needed to reproduce the issue.
+Do not open a public issue for a suspected vulnerability or exposed credential. Use the repository's private security-advisory reporting channel when available, or email the monitored project contact at `jiuzhou.zhu@ucdconnect.ie`. Include only the minimum information needed to reproduce the issue.
 
 ## Sensitive Information
 
