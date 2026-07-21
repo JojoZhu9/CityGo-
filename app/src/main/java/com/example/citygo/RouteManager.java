@@ -53,7 +53,7 @@ public class RouteManager {
 
 
 
-                Log.d(TAG, "Directions URL: " + urlStr);
+                Log.d(TAG, "Directions request started");
 
                 URL url = new URL(urlStr);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -88,8 +88,8 @@ public class RouteManager {
                 drawRoute(decodedPath, callback);
 
             } catch (Exception e) {
-                e.printStackTrace();
-                postError(callback, "Exception: " + e.getMessage());
+                Log.e(TAG, "Directions request failed");
+                postError(callback, "Directions request failed");
             }
         }).start();
     }
